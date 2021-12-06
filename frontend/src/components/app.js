@@ -11,14 +11,6 @@ import TweetComposeContainer from './tweets/tweet_compose_container';
 
 const path = require('path');
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('frontend/build'));
-  app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-  })
-}
-
-
 const App = () => (
   <div>
     <NavBarContainer />
@@ -33,5 +25,12 @@ const App = () => (
     </Switch>
   </div>
 );
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  })
+}
 
 export default App;
